@@ -4,7 +4,11 @@ A decentralized donation platform built on Tezos blockchain using LIGO smart con
 
 ## 🌐 Live Demo
 
-**[View Live Application](https://tezos-donation-jsligo-octez-client-react.onrender.com/)**
+<a href="https://tezos-donation-jsligo-octez-client-react.onrender.com/" target="_blank" rel="noopener noreferrer"><strong>View Live Application</strong></a>
+
+<a href="https://ghostnet.tzkt.io/KT1X734SAaJHEV9MeMcubRL4MjcQWTnnGr8y/operations/" target="_blank" rel="noopener noreferrer"><strong>View Smart Contract on TzKT Explorer</strong></a>
+
+<a href="https://github.com/EdiGal91/tezos-donation-jsligo-octez-client-react" target="_blank" rel="noopener noreferrer"><strong>GitHub Repository</strong></a>
 
 ## 🎯 Features
 
@@ -22,7 +26,7 @@ A decentralized donation platform built on Tezos blockchain using LIGO smart con
 - **Language**: LIGO (JSLigo)
 - **Network**: Tezos Ghostnet
 - **Contract Address**: `KT1X734SAaJHEV9MeMcubRL4MjcQWTnnGr8y`
-- **Explorer**: [View on TzKT](https://ghostnet.tzkt.io/KT1X734SAaJHEV9MeMcubRL4MjcQWTnnGr8y/operations/)
+- **Explorer**: <a href="https://ghostnet.tzkt.io/KT1X734SAaJHEV9MeMcubRL4MjcQWTnnGr8y/operations/" target="_blank" rel="noopener noreferrer">View on TzKT</a>
 
 #### Contract Features:
 
@@ -50,28 +54,29 @@ A decentralized donation platform built on Tezos blockchain using LIGO smart con
 
 1. **Clone the repository**
 
-   ```bash
-   git clone <repository-url>
-   cd tezos-donation-2
-   ```
+```bash
+git clone git@github.com:EdiGal91/tezos-donation-jsligo-octez-client-react.git
+cd tezos-donation-jsligo-octez-client-react
+```
 
 2. **Install dependencies**
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 3. **Start the development server**
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 4. **Open the application**
-   - Navigate to `http://localhost:5173`
-   - Connect your Temple wallet
-   - Switch to Ghostnet testnet
-   - Start donating! 🎉
+
+- Navigate to `http://localhost:5173`
+- Connect your Temple wallet
+- Switch to Ghostnet testnet
+- Start donating! 🎉
 
 ### Environment Configuration
 
