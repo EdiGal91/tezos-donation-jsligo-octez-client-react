@@ -1,0 +1,22 @@
+{
+  "name": "tezos-donation-2",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
+  "scripts": {
+    "dev": "npm run -w @app/web dev",
+    "build": "npm run -ws build",
+    "lint": "npm run -ws lint",
+    "compile": "npm run -w @pkg/contracts compile:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

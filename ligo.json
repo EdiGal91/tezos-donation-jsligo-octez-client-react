@@ -1,0 +1,6 @@
+{
+  "ligoDialect": "jsligo",
+  "projectRoot": "./packages/contracts/src",
+  "buildDirectory": "./packages/contracts/dist",
+  "dependencies": {}
+}

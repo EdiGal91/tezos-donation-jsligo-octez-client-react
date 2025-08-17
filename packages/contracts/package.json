@@ -1,0 +1,13 @@
+{
+  "name": "@pkg/contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile:contract": "ligo compile contract src/donation.jsligo -o dist/donation.tz",
+    "compile:storage": "ligo compile storage src/donation.jsligo 'make_initial_storage(\"tz1M4rFCkqzXPmuwjygTNqVDewwSwUEBThCQ\")' -o dist/initial_storage.tz",
+    "compile:all": "npm run clean && npm run compile:contract && npm run compile:storage",
+    "clean": "rm -rf dist && mkdir -p dist && touch dist/.gitkeep",
+    "deploy": "bash scripts/deploy_contract.sh"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,87 @@
+// Donation Smart Contract
+// Anyone can donate, only owner can withdraw
+
+// Storage type definition
+type storage = {
+  owner: address,
+  total_donations: tez,
+  donors: big_map<address, tez>
+};
+
+// Return type for contract entrypoints
+type return_type = [list<operation>, storage];
+
+// Helper function to create initial storage
+const make_initial_storage = (owner: address): storage => {
+  return {
+    owner: owner,
+    total_donations: 0tez,
+    donors: Big_map.empty
+  };
+};
+
+// Access control: only owner can execute
+const only_owner = (storage: storage): unit => {
+  if (Tezos.get_sender() != storage.owner) {
+    failwith("Only owner can perform this action");
+  }
+};
+
+// Donation entrypoint - anyone can donate
+@entry
+const donate = (_param: unit, storage: storage): return_type => {
+  const amount = Tezos.get_amount();
+  
+  // Check that donation amount is greater than 0
+  if (amount <= 0tez) {
+    failwith("Donation amount must be greater than 0");
+  }
+  
+  const sender = Tezos.get_sender();
+  
+  // Update donor's total contribution
+  const previous_donation = match(Big_map.find_opt(sender, storage.donors)) {
+    when(Some(amount)): amount
+    when(None()): 0tez
+  };
+  
+  const new_donation_total = previous_donation + amount;
+  const updated_donors = Big_map.update(sender, Some(new_donation_total), storage.donors);
+  
+  // Update storage
+  const updated_storage = {
+    ...storage,
+    total_donations: storage.total_donations + amount,
+    donors: updated_donors
+  };
+  
+  return [list([]), updated_storage];
+};
+
+// Withdrawal entrypoint - only owner can withdraw
+@entry
+const withdraw = (amount: tez, storage: storage): return_type => {
+  // Check owner permission
+  only_owner(storage);
+  
+  // Check that withdrawal amount is valid
+  if (amount <= 0tez) {
+    failwith("Withdrawal amount must be greater than 0");
+  }
+  
+  // Check that contract has sufficient balance
+  const contract_balance = Tezos.get_balance();
+  if (amount > contract_balance) {
+    failwith("Insufficient contract balance");
+  }
+  
+  // Create transfer operation to owner
+  const owner_contract = match(Tezos.get_contract_opt(storage.owner)) {
+    when(Some(contract)): contract
+    when(None()): failwith("Invalid owner address")
+  };
+  
+  const transfer_op = Tezos.Next.Operation.transaction(unit, amount, owner_contract);
+  
+  return [list([transfer_op]), storage];
+};

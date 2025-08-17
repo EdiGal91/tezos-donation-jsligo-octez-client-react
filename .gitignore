@@ -1,0 +1,16 @@
+# node
+node_modules
+npm-debug.log*
+# builds
+**/dist/*
+!**/dist/.gitkeep
+# env
+# .env
+.env.*
+!.env.example
+# editors
+.DS_Store
+.idea
+.vscode
+
+.ligo
